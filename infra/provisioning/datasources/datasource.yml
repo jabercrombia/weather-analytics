@@ -1,0 +1,18 @@
+null_resource.es_index (local-exec): {"acknowledged":true,"shards_acknowledged":true,"index":"weather-data"}
+null_resource.es_index: Creation complete after 10s [id=449963798040514722]
+null_resource.es_sample_doc: Creating...
+null_resource.es_sample_doc: Provisioning with 'local-exec'...
+null_resource.es_sample_doc (local-exec): Executing: ["/bin/sh" "-c" "      curl -X POST \"http://localhost:9200/weather-data/_doc\" \\\n      -H \"Content-Type: application/json\" \\\n      -d '{\n        \"timestamp\": \"2026-04-04T12:00:00\",\n        \"temperature\": 75,\n        \"humidity\": 60,\n        \"rain\": 0.2,\n        \"wind_speed\": 10\n      }'\n"]
+null_resource.es_sample_doc (local-exec):   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+null_resource.es_sample_doc (local-exec):                                  Dload  Upload   Total   Spent    Left  Speed
+null_resource.es_sample_doc (local-exec):   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+null_resource.es_sample_doc (local-exec): 100   314  100   164  100   150   9550   8735 --:--:-- --:--:-- --:--:-- 18470
+null_resource.es_sample_doc (local-exec): {"_index":"weather-data","_id":"cdoSXJ0BycDnb_VorLja","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":0,"_primary_term":1}
+null_resource.es_sample_doc: Creation complete after 0s [id=5907145974529122678]
+╷
+│ Error: Unable to create container: Error response from daemon: invalid mount config for type "bind": bind source path does not exist: /host_mnt/Users/jabercrombia/Sites/weather-analytics/infra/provisioning/dashboards/dashboard.yml
+│ 
+│   with docker_container.grafana,
+│   on main.tf line 80, in resource "docker_container" "grafana":
+│   80: resource "docker_container" "grafana" {
+│ 

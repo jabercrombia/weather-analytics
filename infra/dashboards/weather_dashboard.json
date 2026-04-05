@@ -1,0 +1,68 @@
+{
+  "id": null,
+  "title": "Weather Dashboard",
+  "uid": "weather-dashboard",
+  "timezone": "browser",
+  "schemaVersion": 30,
+  "version": 1,
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Temperature",
+      "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8},
+      "id": 1,
+      "datasource": "Elasticsearch",
+      "targets": [
+        {
+          "refId": "A",
+          "query": "*",
+          "metrics": [
+            {
+              "type": "avg",
+              "field": "temperature"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "type": "date_histogram",
+              "field": "timestamp",
+              "interval": "auto"
+            }
+          ]
+        }
+      ],
+      "lines": true,
+      "linewidth": 2,
+      "fill": 1
+    },
+    {
+      "type": "graph",
+      "title": "Humidity",
+      "gridPos": {"x": 12, "y": 0, "w": 12, "h": 8},
+      "id": 2,
+      "datasource": "Elasticsearch",
+      "targets": [
+        {
+          "refId": "A",
+          "query": "*",
+          "metrics": [
+            {
+              "type": "avg",
+              "field": "humidity"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "type": "date_histogram",
+              "field": "timestamp",
+              "interval": "auto"
+            }
+          ]
+        }
+      ],
+      "lines": true,
+      "linewidth": 2,
+      "fill": 1
+    }
+  ]
+}
