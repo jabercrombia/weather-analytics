@@ -3,66 +3,105 @@
   "title": "Weather Dashboard",
   "uid": "weather-dashboard",
   "timezone": "browser",
-  "schemaVersion": 30,
+  "schemaVersion": 36,
   "version": 1,
+  "time": { "from": "now-7d", "to": "now" },
   "panels": [
     {
-      "type": "graph",
+      "type": "timeseries",
       "title": "Temperature",
       "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8},
       "id": 1,
-      "datasource": "Elasticsearch",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "P31C819B24CF3C3C7"
+      },
       "targets": [
         {
           "refId": "A",
           "query": "*",
-          "metrics": [
-            {
-              "type": "avg",
-              "field": "temperature"
-            }
-          ],
-          "bucketAggs": [
-            {
-              "type": "date_histogram",
-              "field": "timestamp",
-              "interval": "auto"
-            }
-          ]
+          "metrics": [{"type": "avg", "id": "1", "field": "temperature"}],
+          "bucketAggs": [{"type": "date_histogram", "id": "2", "field": "timestamp", "settings": {"interval": "auto"}}]
         }
       ],
-      "lines": true,
-      "linewidth": 2,
-      "fill": 1
+      "fieldConfig": {
+        "defaults": {
+          "unit": "fahrenheit",
+          "custom": {"lineWidth": 2, "fillOpacity": 10}
+        }
+      }
     },
     {
-      "type": "graph",
+      "type": "timeseries",
       "title": "Humidity",
       "gridPos": {"x": 12, "y": 0, "w": 12, "h": 8},
       "id": 2,
-      "datasource": "Elasticsearch",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "P31C819B24CF3C3C7"
+      },
       "targets": [
         {
           "refId": "A",
           "query": "*",
-          "metrics": [
-            {
-              "type": "avg",
-              "field": "humidity"
-            }
-          ],
-          "bucketAggs": [
-            {
-              "type": "date_histogram",
-              "field": "timestamp",
-              "interval": "auto"
-            }
-          ]
+          "metrics": [{"type": "avg", "id": "1", "field": "humidity"}],
+          "bucketAggs": [{"type": "date_histogram", "id": "2", "field": "timestamp", "settings": {"interval": "auto"}}]
         }
       ],
-      "lines": true,
-      "linewidth": 2,
-      "fill": 1
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "custom": {"lineWidth": 2, "fillOpacity": 10}
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Wind Speed",
+      "gridPos": {"x": 0, "y": 8, "w": 12, "h": 8},
+      "id": 3,
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "P31C819B24CF3C3C7"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "query": "*",
+          "metrics": [{"type": "avg", "id": "1", "field": "wind_speed"}],
+          "bucketAggs": [{"type": "date_histogram", "id": "2", "field": "timestamp", "settings": {"interval": "auto"}}]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "velocityms",
+          "custom": {"lineWidth": 2, "fillOpacity": 10}
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Rain",
+      "gridPos": {"x": 12, "y": 8, "w": 12, "h": 8},
+      "id": 4,
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "P31C819B24CF3C3C7"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "query": "*",
+          "metrics": [{"type": "avg", "id": "1", "field": "rain"}],
+          "bucketAggs": [{"type": "date_histogram", "id": "2", "field": "timestamp", "settings": {"interval": "auto"}}]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "lengthin",
+          "custom": {"lineWidth": 2, "fillOpacity": 10}
+        }
+      }
     }
   ]
 }

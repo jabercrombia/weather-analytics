@@ -197,22 +197,12 @@ resource "null_resource" "es_index" {
 }
 
 # -----------------------------
-# Insert sample document
+# Seed sample data
 # -----------------------------
 resource "null_resource" "es_sample_doc" {
   depends_on = [null_resource.es_index]
 
   provisioner "local-exec" {
-    command = <<EOT
-      curl -X POST "http://localhost:9200/weather-data/_doc" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "timestamp": "2026-04-04T12:00:00",
-        "temperature": 75,
-        "humidity": 60,
-        "rain": 0.2,
-        "wind_speed": 10
-      }'
-    EOT
+    command = "python3 ${abspath("${path.module}/seed.py")}"
   }
 }
